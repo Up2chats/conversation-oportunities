@@ -549,6 +549,10 @@
     OPEN_WINDOWS.delete(floatId);
   };
 
+   const closeAllWindows = () => {
+    Array.from(OPEN_WINDOWS.keys()).forEach((id) => closeWindow(id));
+  };
+
   const setAutoClose = (winState, minutes) => {
     if (winState.autoCloseTimer) {
       clearTimeout(winState.autoCloseTimer);
@@ -1084,7 +1088,7 @@
   setTimeout(handle, 1000);
 
 
- // === Exponer funciones globales para que otros scripts puedan controlar las ventanas ===
+// === Exponer funciones globales ===
   window.ghlOpenFloatingConversation = function(contactId) {
     try {
       openFloatingForContact(contactId);
@@ -1095,10 +1099,7 @@
 
   window.ghlCloseAllFloatingConversations = function() {
     try {
-      // cerramos TODAS las ventanas usando el mismo helper interno
-      Array.from(OPEN_WINDOWS.keys()).forEach((floatId) => {
-        closeWindow(floatId);
-      });
+      closeAllWindows();
     } catch (e) {
       console.error("Error al cerrar ventanas flotantes desde global:", e);
     }
