@@ -1084,12 +1084,23 @@
   setTimeout(handle, 1000);
 
 
- // === Exponer función global para que otros scripts puedan abrir la ventana ===
+ // === Exponer funciones globales para que otros scripts puedan controlar las ventanas ===
   window.ghlOpenFloatingConversation = function(contactId) {
     try {
       openFloatingForContact(contactId);
     } catch (e) {
       console.error("Error al abrir ventana flotante desde global:", e);
+    }
+  };
+
+  window.ghlCloseAllFloatingConversations = function() {
+    try {
+      // cerramos TODAS las ventanas usando el mismo helper interno
+      Array.from(OPEN_WINDOWS.keys()).forEach((floatId) => {
+        closeWindow(floatId);
+      });
+    } catch (e) {
+      console.error("Error al cerrar ventanas flotantes desde global:", e);
     }
   };
 })();
