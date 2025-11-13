@@ -1,4 +1,4 @@
-const openFloatingForContact = async (contactId) => {
+
 (() => {
   "use strict";
   if (window.__GHL_FLOAT_CHAT_V2__) return;
@@ -1084,7 +1084,7 @@ const openFloatingForContact = async (contactId) => {
   setTimeout(handle, 1000);
 
 
-  // === Exponer función global para que otros scripts puedan abrir la ventana ===
+ // === Exponer función global para que otros scripts puedan abrir la ventana ===
   window.ghlOpenFloatingConversation = function(contactId) {
     try {
       openFloatingForContact(contactId);
@@ -1093,9 +1093,4 @@ const openFloatingForContact = async (contactId) => {
     }
   };
 })();
-  
-  
- 
-
-};
 
