@@ -109,7 +109,7 @@
       }
       .ghl-float-window{
         position: absolute;
-        width: 420px;
+        width: 380px;
         max-width: calc(100vw - 40px);
         height: 560px;
         max-height: calc(100vh - 40px);
