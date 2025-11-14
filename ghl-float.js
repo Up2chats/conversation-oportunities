@@ -1087,6 +1087,16 @@
   setTimeout(handle, 500);
   setTimeout(handle, 1000);
 
+    // Al final de ghl-float.js, antes del cierre de la IIFE
+  window.ghlCloseAllFloatingConversations = function () {
+    try {
+      OPEN_WINDOWS.forEach((_, floatId) => {
+        closeWindow(floatId);
+      });
+    } catch (e) {
+      console.error("Error al cerrar todas las ventanas flotantes:", e);
+    }
+  };
 
 // === Exponer funciones globales ===
   window.ghlOpenFloatingConversation = function(contactId) {
